@@ -35,7 +35,7 @@ b. Install the dependent libraries as follows:
   pip install torch==1.10.0 torchvision==0.11.1 sklearn opencv tqdm
   ```
 
-* We test this repositories on Nvidia 3080Ti GPUs and Ubuntu 16.04.
+* We test this repository on Nvidia 3080Ti GPUs and Ubuntu 18.04.
 
 ## Getting Started
 
@@ -120,7 +120,7 @@ cd ../../..
   python low_cost/seg_img.py
   ```
 
-- Then, generate the pseudo labels on KITTI raw data (exclude validation sequences).
+- Then, generate pseudo labels on KITTI raw data (exclude validation sequences).
   
   ```python
   python low_cost/det.py
@@ -144,11 +144,11 @@ We use [M3D-RPN](https://github.com/garrickbrazil/M3D-RPN) and [MonoFlex](https:
 
 #### Testing monocular models
 
-Please refer to the corresponding monocular 3D detection codebases you used and then follow their evaluation guidelines (we use [M3D-RPN](https://github.com/garrickbrazil/M3D-RPN) and https://github.com/Owen-Liuyuxuan/visualDet3D codebases). 
+Please refer to the corresponding monocular 3D detection codebases you used and then follow their evaluation guidelines (we use [M3D-RPN](https://github.com/garrickbrazil/M3D-RPN) and [VisualDet3D](https://github.com/Owen-Liuyuxuan/visualDet3D) codebases). 
 
 ## Pretrained Models
 
-To ease the usage, we provide the pre-trained model using high accurate mode: M3D-RPN [Google Drive](https://drive.google.com/file/d/1wkMsFXLQLIWwh6pfN6rvG1tklUONbWEM/view?usp=sharing) [Codes](https://github.com/garrickbrazil/M3D-RPN), MonoFlex (in VisualDet3D) [Google Drive](https://drive.google.com/file/d/1s_C0OH5OcnJE4XU7Ms24UaEy3O4Sz7UX/view?usp=sharing) [Codes](https://github.com/Owen-Liuyuxuan/visualDet3D).
+To ease the usage, we provide the pre-trained model using high accurate mode: M3D-RPN [Google Drive](https://drive.google.com/file/d/1wkMsFXLQLIWwh6pfN6rvG1tklUONbWEM/view?usp=sharing), [Codes](https://github.com/garrickbrazil/M3D-RPN), MonoFlex (in VisualDet3D) [Google Drive](https://drive.google.com/file/d/1s_C0OH5OcnJE4XU7Ms24UaEy3O4Sz7UX/view?usp=sharing), [Codes](https://github.com/Owen-Liuyuxuan/visualDet3D).
 You can directly load the pre-trained model and then perform inference.
 
 ## Citation
