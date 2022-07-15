@@ -88,11 +88,13 @@ The raw_data refers to the soft link to the raw KITTI dataset.
   ln -s $KITTI_DATA_PATH/testing/ ./data/kitti/KITTI3D/
   ```
 
-* Prepare KITTI raw dataset for training: 
+* Prepare KITTI raw dataset for training.       
+  
+  If you use our pre-generated data files, you can skip [prepare_kitti_raw_datafile.py](data/kitti/prepare_kitti_raw_datafile.py).
   
   ```python
-  python utils/prepare_kitti_raw_datafile.py
-  python utils/link_kitti_raw.py
+  python data/kitti/prepare_kitti_raw_datafile.py (#optionally)
+  python data/kitti/link_kitti_raw.py
   ```
 
 ### Training & Testing
@@ -103,14 +105,18 @@ The raw_data refers to the soft link to the raw KITTI dataset.
 
 ###### For high accuracy mode
 
-Use the pretrained model in OpenPCDet (we use the pre-trained [PV-RCNN](https://drive.google.com/file/d/1sCCDaCuHBJxIeguImCZyEEbi9VDakZa1/view?usp=sharing), you can also use other lidar models as you wanted).
+Use the pretrained model in OpenPCDet (we use the pre-trained [PV-RCNN](https://drive.google.com/file/d/1sCCDaCuHBJxIeguImCZyEEbi9VDakZa1/view?usp=sharing), you can also use other lidar models as you wanted). Please clone [OpenPCDet](https://github.com/open-mmlab/OpenPCDet) under the high_acc folder and follow their installation guidelines.
 Then, generate pseudo labels on KITTI raw data (exclude validation sequences).
 
 ```shell
+cp high_acc/infer_kitti.py  high_acc/OpenPCDet/tools/
 cd high_acc/OpenPCDet/tools
 CUDA_VISIBLE_DEVICES=0 python infer_kitti.py --cfg_file cfgs/kitti_models/pv_rcnn.yaml --ckpt ../pv_rcnn_8369.pth --data_path /pvc_user/pengliang/LPCG/data/kitti/kitti_merge/training/velodyne
 cd ../../..
 ```
+
+To ease the usage, we provide pre-generated pseudo labels and converted calibration files (we only converted P2 and Tr_velo_to_cam) [Pseudo-Labels](https://drive.google.com/file/d/1NBfPCb9eE1m5RHgA1ljKD_PdsuiceSN7/view?usp=sharing), [Filtered-Pseudo-Labels](https://drive.google.com/file/d/1plat_KKn0hlYIq6xJl4gJ5FYiQWGc51F/view?usp=sharing) (removed some outliers and only keep cars), [Calibration](https://drive.google.com/file/d/1XAs8I7LJeCcWNGFzAaWAY384fZYfKdL-/view?usp=sharing).
+Please note, the ids of pre-generated pseudo labels corresponds to the pre-generated [kitti_raw_name](data/kitti/data_file/split/train_raw.txt) (If you generate this file by yourself ([prepare_kitti_raw_datafile.py](./data/kitti/prepare_kitti_raw_datafile.py) ) , your generated file is different from the provided one because of the np.random.shuffle operation ).
 
 ###### For low cost mode
 
@@ -130,12 +136,12 @@ cd ../../..
 
 - Filter out empty pseudo labels for training and then link the validation labels. 
   
+  If you use our pre-generated [Filtered-Pseudo-Labels](https://drive.google.com/file/d/1plat_KKn0hlYIq6xJl4gJ5FYiQWGc51F/view?usp=sharing) on the high accuracy mode, you can skip [filter_labels.py](tools/filter_labels.py)
+  
   ```python
-  python tools/filter_labels.py
+  python tools/filter_labels.py 
   python tools/link_kitti_val_labels.py
   ```
-
-
 
 ##### Step 2: train monocular models using pseudo labels
 
@@ -150,6 +156,10 @@ Please refer to the corresponding monocular 3D detection codebases you used and 
 
 To ease the usage, we provide the pre-trained model using high accurate mode: M3D-RPN [Google Drive](https://drive.google.com/file/d/1wkMsFXLQLIWwh6pfN6rvG1tklUONbWEM/view?usp=sharing), [Codes](https://github.com/garrickbrazil/M3D-RPN), MonoFlex (in VisualDet3D) [Google Drive](https://drive.google.com/file/d/1s_C0OH5OcnJE4XU7Ms24UaEy3O4Sz7UX/view?usp=sharing), [Codes](https://github.com/Owen-Liuyuxuan/visualDet3D).
 You can directly load the pre-trained model and then perform inference.
+
+## Others
+
+This repository will be cleaned and improved further when I have free time.
 
 ## Citation
 
