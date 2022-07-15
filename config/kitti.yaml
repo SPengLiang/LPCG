@@ -1,0 +1,12 @@
+type: 'kitti'
+root_dir: '/pvc_user/pengliang/LPCG'
+
+data_dir: '/pvc_user/pengliang/LPCG/data/kitti'
+raw_data_dir: '/pvc_user/pengliang/LPCG/data/kitti/raw_data'
+KITTI3D_data_dir: '/pvc_user/pengliang/LPCG/data/kitti/KITTI3D/training'
+KITTI_merge_data_dir: '/pvc_user/pengliang/LPCG/data/kitti/kitti_merge/training'
+
+writelist: ['Car']
+label_mode: ['high_acc']
+#optional: label_mode: ['low_cost'] or label_mode: ['high_acc', 'low_cost']
+
