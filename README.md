@@ -4,7 +4,8 @@
 
 ## Introduction
 
-This is the PyTorch implementation of the paper Lidar Point Cloud Guided Monocular 3D Object Detection, In ECCV'22, Liang Peng, Fei Liu, Zhengxu Yu, Senbo Yan, Dan Deng, Zheng Yang, Haifeng Liu, and Deng Cai.
+This is the PyTorch implementation of the paper Lidar Point Cloud Guided Monocular 3D Object Detection, In ECCV'22, Liang Peng, Fei Liu, Zhengxu Yu, Senbo Yan, Dan Deng, Zheng Yang, Haifeng Liu, and Deng Cai. 
+[[paper]](https://arxiv.org/abs/2104.09035)
 
 ## Abstract
 
